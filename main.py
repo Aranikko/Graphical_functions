@@ -1,42 +1,21 @@
-import flet as ft
+import PySimpleGUI as sg
 
+# Define the window's contents
+layout = [[sg.Text("K"), sg.DropDown("y=kx+b, y=gb", size=10)],
+          [sg.Input(key='-INPUTK-', values=''), sg.Input(key='-INPUTX-'), sg.Input(key='-INPUTB-')],
+          [sg.Button('submit')]]
 
-def main(page: ft.Page):
+# Create the window
+window = sg.Window('Window Title', layout)
+
+# Display and interact with the Window using an Event Loop
+while True:
+    event, values = window.read()
+    # See if user wants to quit or window was closed
+    if event == sg.WINDOW_CLOSED:
+        break
+    # Output a message to the window
+    print(values['-INPUTX-'])
     
-    page.window_max_width = 850
-    page.window_max_height = 800
-    page.window_min_width = 850
-    page.window_min_height = 800
-    
-    def button_clicked(e):
-        output_text.value = f"Dropdown value is:  {color_dropdown.value}"
-        page.update()
-    
-
-    output_text = ft.Text()
-    submit_btn = ft.ElevatedButton(text="Submit", on_click=button_clicked)
-    color_dropdown = ft.Dropdown(
-        width=100,
-        options=[
-            ft.dropdown.Option("y=kx+b"),
-            ft.dropdown.Option("Green"),
-            ft.dropdown.Option("Blue"),
-        ],
-    )
-    page.add(color_dropdown, submit_btn, output_text)
-
-    def btn_click(e):
-        if not txt_name.value:
-            txt_name.error_text = "pls enter x"
-            page.update()
-        else:
-            name = txt_name.value
-            print(type(name))
-
-    txt_name = ft.TextField(label="X")
-
-    page.add(txt_name, ft.ElevatedButton("enter", on_click=btn_click))
-    
-    page.add(ft.Image(src=f"my_plot.png"))
-
-ft.app(target=main)
+# Finish up by removing from the screen
+window.close()
