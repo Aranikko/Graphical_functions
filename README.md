@@ -1,4 +1,4 @@
-#install all need components
+##install all need components
 ```bash
 pip install matplotlib customtkinter
 ```
