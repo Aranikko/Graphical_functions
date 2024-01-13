@@ -1,28 +1,47 @@
 import matplotlib.pyplot as plt
-x = [1, 2, 3, 4, 5]
-y = [2, 4, 6, 8, 10]
+import os
+plt.switch_backend('Agg')
+
 def linear(x_values: list[str], k:str, b:str, theme:str):
-    x_list = list(map(int, x_values.split(',')))
+    
+    x_values = x_values.replace("x:", "")  
+    k = k.replace("k:", "")
+    b = b.replace("b:", "")
+    
+    
+    
+    x = list(map(int, x_values.split(',')))
+    
+    
+
+    y = [int(k) * x + int(b) for x in x]
     
     plt.plot(x, y)
-
-    y = [int(k) * x + int(b) for x in x_list]
     if theme == "black":
         plt.style.use('dark_background')
     else:
         pass
-    plt.plot(x_list, y, label='Linear Function')
+    plt.plot(x, y, label='Linear Function')
     plt.title('Linear Function')
     plt.xlabel('X Axis')
     plt.ylabel('Y Axis')
     plt.legend()
     plt.savefig('Graph.png')
     plt.clf()  # Clear the current figure after saving the graph
+    
+
+
+
+def check_file_availability(file_name):
+    return os.path.exists(file_name)
 
 def quadratic(x_values, n):
+    x_values = x_values.replace("x:", "") 
+    n = n.replace("n:", "")
+    
     x_list = list(map(int, x_values.split(',')))
     
-    y = [x**n for x in x_list]
+    y = [x**int(n) for x in x_list]
 
     plt.style.use('dark_background')
     plt.plot(x_list, y, label='Quadratic Function')
@@ -30,22 +49,9 @@ def quadratic(x_values, n):
     plt.xlabel('X Axis')
     plt.ylabel('Y Axis')
     plt.legend()
-    plt.savefig('Quadratic_Graph.png')
+    plt.savefig('Graph.png')
     plt.clf()  # Clear the current figure after saving the graph
-
-
-
-
-
-
-
-plt.title('Простой линейный график')
-plt.xlabel('Ось X')
-plt.ylabel('Ось Y')
-
-
-
-
-plt.show()
+    
+# quadratic('4,3,1,0,-1,-3,-4', '2')
 
 
