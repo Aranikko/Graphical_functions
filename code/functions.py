@@ -157,6 +157,3 @@ def Elliptical_paraboloid(x_values, y_values, theme='default'):
     plt.title('f(z)=x^2*y^2')  
     plt.savefig('Graph.png')
     plt.clf()  # Clear the current figure after saving the graph
-
-
-
