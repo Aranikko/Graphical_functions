@@ -4,12 +4,22 @@ import functions
 app = ctk.CTk()
 app.geometry("810x484")
 app.resizable(False, False)
+app.title("graphical functions")
 
 x =ctk.CTkEntry(app, placeholder_text="x:")
+
 y = ctk.CTkEntry(app, placeholder_text="y:")
+
 k =ctk.CTkEntry(app, placeholder_text="k:")
+
+a = ctk.CTkEntry(app, placeholder_text="a:")
+
 b =ctk.CTkEntry(app, placeholder_text="b:")
+
+c = ctk.CTkEntry(app, placeholder_text="c:")
+
 n =ctk.CTkEntry(app, placeholder_text="n:")
+
 
 def combobox_callback(choice):
     if choice == "y=kx+b":
@@ -128,7 +138,13 @@ def combobox_callback(choice):
         n.delete(0, 'end')
         y.delete(0, 'end')
 
-options = ctk.CTkComboBox(app,state='readonly', values=["y=kx+b", "y=x^n", "z = x * y", "z = x^2 - y^2", "z = x^2 + y^2"],command=combobox_callback)
+options = ctk.CTkComboBox(app,state='readonly', values=[
+                                                        "y=kx+b", "y = ax^2 + bx + c", "y = x^3",
+                                                        "y = sqrt(x)", "y = 1/x", "y = lg(x)",
+                                                        "y = sin(x)", "y = tg(x)", "y = ctg(x)",
+                                                        "y = arcsin(x)", "y = arccos(x)", "z = x*y",
+                                                        "z = sin(x)", "z = sin(x)cos(y)", "z = x2y2+2"
+                                                        ],command=combobox_callback)
 
 if functions.check_file_availability("Graph.png"):
     my_image = ctk.CTkImage(light_image=Image.open("Graph.png"),
@@ -152,23 +168,27 @@ theme_dd.set("Select theme")
 
 image_label.place(relx=0.005, rely=0)
 
+
+image_name = ctk.CTkEntry(app)
+image_name.place(relx=0.821, rely=0.925)
+
 def submit():
     global image_label, my_image
     
     image_label.place_forget()
     
     if options.get() == 'y=kx+b':
-        functions.linear(x.get(), k.get(), b.get(), theme_dd.get())
-    elif options.get() == 'y=x^n':
-        functions.quadratic(x.get(),n.get())
-    elif options.get() == 'z = x * y':
+        functions.linear(x.get(), k.get(), b.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = ax^2 + bx + c':
+        functions.quadratic_equation(x.get(), a.get(),b.get(), theme_dd.get(), image_name)
+    elif options.get() == 'y = x^3':
         functions.plot_3d_surface(x.get(), y.get()) 
     elif options.get() == 'z = x^2 - y^2':
         functions.Hyperbolic_paraboloid(x.get(), y.get())   
     elif options.get() == 'z = x^2 + y^2':
-        functions.Hyperbolic_paraboloid(x.get(), y.get())
-    my_image = ctk.CTkImage(light_image=Image.open("Graph.png"),
-                                dark_image=Image.open("Graph.png"),
+        functions.Hyperbolic_paraboloid(x.get(), y.get()) 
+    my_image = ctk.CTkImage(light_image=Image.open(f"{image_name.get()}.png"),
+                                dark_image=Image.open(f"{image_name.get()}.png"),
                                 size=(640, 480))
     
     image_label = ctk.CTkLabel(app, image=my_image, text="") 
@@ -178,6 +198,7 @@ def submit():
     pass
 
 submit_b=ctk.CTkButton(app, text="Submit", command=submit)
+
 
 options.place(relx=0.821, rely=0.100)
 options.set("Select")
