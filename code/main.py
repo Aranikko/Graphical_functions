@@ -176,7 +176,7 @@ def submit():
     if options.get() == 'y=ax+b':
         functions.linear(x.get(), a.get(), b.get(), theme_dd.get(), image_name.get())
     elif options.get() == 'y = ax^2 + bx + c':
-        functions.quadratic_equation(x.get(), a.get(),b.get(), theme_dd.get(), image_name.get())
+        functions.quadratic_equation(x.get(), a.get(),b.get(),c.get(), theme_dd.get(), image_name.get())
     elif options.get() == 'y = x^3':
         functions.cubic_function(x.get(), theme_dd.get(), image_name.get())
     elif options.get() == 'y = sqrt(x)':
@@ -196,13 +196,13 @@ def submit():
     elif options.get() == 'y = arccos(x)':
         functions.arccosine_function(x.get(), theme_dd.get(), image_name.get())
     elif options.get() == 'z = x*y':
-        functions.product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+        functions.product_function(x.get(), y.get(), image_name.get())
     elif options.get() == 'z = sin(x)':
-        functions.sine_product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+        functions.sine_product_function(x.get(), image_name.get())
     elif options.get() == 'z = sin(x)cos(y)':
-        functions.sine_cosine_product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+        functions.sine_cosine_product_function(x.get(), y.get(), image_name.get())
     elif options.get() == 'z = x2y2+2':
-        functions.quadratic_product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+        functions.quadratic_product_function(x.get(), y.get(), image_name.get())
     my_image = ctk.CTkImage(light_image=Image.open(f"{image_name.get()}.png"),
                                 dark_image=Image.open(f"{image_name.get()}.png"),
                                 size=(640, 480))
