@@ -18,128 +18,123 @@ b =ctk.CTkEntry(app, placeholder_text="b:")
 
 c = ctk.CTkEntry(app, placeholder_text="c:")
 
-n =ctk.CTkEntry(app, placeholder_text="n:")
 
-
-def combobox_callback(choice):
-    if choice == "y=kx+b":
-
-        x.place_forget()
-        n.place_forget()
-        b.place_forget()
-        k.place_forget()
-        submit_b.place_forget()
-        y.place_forget()
-        
-        
-        x.delete(0, 'end')
-        k.delete(0, 'end')
-        b.delete(0, 'end')
-        n.delete(0, 'end')
-        y.delete(0, 'end')
-
-
+def Enter_box_show(x_show:bool, y_show:bool, k_show:bool, a_show:bool, b_show:bool, c_show:bool):
+    
+    cons_add_y = 0.075
+    counter = 0
+    
+    x.place_forget()
+    b.place_forget()
+    k.place_forget()
+    submit_b.place_forget()
+    y.place_forget()
+    c.place_forget()
+    a.place_forget()
+    
+    
+    x.delete(0, 'end')
+    k.delete(0, 'end')
+    b.delete(0, 'end')
+    y.delete(0, 'end')
+    c.delete(0, "end")
+    a.delete(0, "end")
+    
+    if x_show:
         x.place(relx=0.821, rely=0.175)
+        counter+=1
         
-        k.place(relx=0.821, rely=0.250)
+    if y_show:
+        y.place(relx=0.821, rely=0.175+(cons_add_y*counter))
+        counter+=1
         
-        b.place(relx=0.821, rely=0.325)
+    if k_show:
+        k.place(relx=0.821, rely=0.175+(cons_add_y*counter))
+        counter+=1
+    if a_show:
+        a.place(relx=0.821, rely=0.175+(cons_add_y*counter))
+        counter+=1
         
-        submit_b.place(relx=0.821, rely=0.400)
-    elif choice == "y=x^n":
+    if b_show:
+        b.place(relx=0.821, rely=0.175+(cons_add_y*counter))
+        counter+=1
         
-        x.place_forget()
-        n.place_forget()
-        b.place_forget()
-        k.place_forget()
-        submit_b.place_forget()
-        y.place_forget()
+    if c_show:
+        c.place(relx=0.821, rely=0.175+(cons_add_y*counter))
+        counter+=1
         
-        x.delete(0, 'end')
-        k.delete(0, 'end')
-        b.delete(0, 'end')
-        n.delete(0, 'end')
-        y.delete(0, 'end')
-        
-        x.place(relx=0.821, rely=0.175)
-        
-        n.place(relx=0.821, rely=0.250)
-        
-        submit_b.place(relx=0.821, rely=0.325)
-    elif choice == "z = x * y":
-        
-        x.place_forget()
-        n.place_forget()
-        b.place_forget()
-        k.place_forget()
-        submit_b.place_forget()
-        y.place_forget()
-        
-        x.delete(0, 'end')
-        k.delete(0, 'end')
-        b.delete(0, 'end')
-        n.delete(0, 'end')
-        y.delete(0, 'end')
-        
-        x.place(relx=0.821, rely=0.175)
-        
-        y.place(relx=0.821, rely=0.250)
-        
-        submit_b.place(relx=0.821, rely=0.325)
-    elif choice == "z = x^2 - y^2":
-        x.place_forget()
-        n.place_forget()
-        y.place_forget()
-        b.place_forget()
-        k.place_forget()
-        submit_b.place_forget()
-        
-        x.delete(0, 'end')
-        k.delete(0, 'end')
-        b.delete(0, 'end')
-        n.delete(0, 'end')
-        y.delete(0, 'end')
-        
-        x.place(relx=0.821, rely=0.175)
-        
-        y.place(relx=0.821, rely=0.250)
-        
-        submit_b.place(relx=0.821, rely=0.325)
-    elif choice == "z = x^2 + y^2":
-        x.place_forget()
-        n.place_forget()
-        y.place_forget()
-        b.place_forget()
-        k.place_forget()
-        submit_b.place_forget()
-        
-        x.delete(0, 'end')
-        k.delete(0, 'end')
-        b.delete(0, 'end')
-        n.delete(0, 'end')
-        y.delete(0, 'end')
-        
-        x.place(relx=0.821, rely=0.175)
-        
-        y.place(relx=0.821, rely=0.250)
-        
-        submit_b.place(relx=0.821, rely=0.325)
-    else:
-        x.place_forget()
-        n.place_forget()
-        y.place_forget()
-        b.place_forget()
-        k.place_forget()
-        submit_b.place_forget()
-        
-        x.delete(0, 'end')
-        k.delete(0, 'end')
-        b.delete(0, 'end')
-        n.delete(0, 'end')
-        y.delete(0, 'end')
+    
+    submit_b.place(relx=0.821, rely=0.175+(cons_add_y*counter))
 
-options = ctk.CTkComboBox(app,state='readonly', values=[
-                                                        "y=kx+b", "y = ax^2 + bx + c", "y = x^3",
+def combobox_callback(choice): # add GUI
+    if choice == "y=ax+b":
+
+        Enter_box_show(1,0,0,1,1,0)
+        
+    elif choice == " y=kx+b":
+        
+        Enter_box_show(1,0,1,0,1,0)
+        
+    elif choice == "y = ax^2 + bx + c":
+        
+        Enter_box_show(1,0,0,1,1,1)
+        
+    elif choice == "y = x^3":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = sqrt(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = 1/x":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = lg(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = sin(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = tg(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = ctg(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = ctg(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = arcsin(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "y = arccos(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "z = x*y":
+        
+        Enter_box_show(1,1,0,0,0,0)
+        
+    elif choice == "z = sin(x)":
+        
+        Enter_box_show(1,0,0,0,0,0)
+        
+    elif choice == "z = sin(x)cos(y)":
+        Enter_box_show(1,1,0,0,0,0)
+    elif choice == "z = x2y2+2":
+        
+        Enter_box_show(1,1,0,0,0,0)
+
+options = ctk.CTkComboBox(app,state='readonly', values=[ # sellect
+                                                        "y=ax+b", "y = ax^2 + bx + c", "y = x^3",
                                                         "y = sqrt(x)", "y = 1/x", "y = lg(x)",
                                                         "y = sin(x)", "y = tg(x)", "y = ctg(x)",
                                                         "y = arcsin(x)", "y = arccos(x)", "z = x*y",
@@ -169,24 +164,45 @@ theme_dd.set("Select theme")
 image_label.place(relx=0.005, rely=0)
 
 
-image_name = ctk.CTkEntry(app)
+image_name = ctk.CTkEntry(app, placeholder_text="Image name", )
 image_name.place(relx=0.821, rely=0.925)
+image_name.insert(0, "Image_name")
 
 def submit():
     global image_label, my_image
     
     image_label.place_forget()
     
-    if options.get() == 'y=kx+b':
-        functions.linear(x.get(), k.get(), b.get(), theme_dd.get(), image_name.get())
+    if options.get() == 'y=ax+b':
+        functions.linear(x.get(), a.get(), b.get(), theme_dd.get(), image_name.get())
     elif options.get() == 'y = ax^2 + bx + c':
-        functions.quadratic_equation(x.get(), a.get(),b.get(), theme_dd.get(), image_name)
+        functions.quadratic_equation(x.get(), a.get(),b.get(), theme_dd.get(), image_name.get())
     elif options.get() == 'y = x^3':
-        functions.plot_3d_surface(x.get(), y.get()) 
-    elif options.get() == 'z = x^2 - y^2':
-        functions.Hyperbolic_paraboloid(x.get(), y.get())   
-    elif options.get() == 'z = x^2 + y^2':
-        functions.Hyperbolic_paraboloid(x.get(), y.get()) 
+        functions.cubic_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = sqrt(x)':
+        functions.square_root_function(x.get(), theme_dd.get(), image_name.get())  
+    elif options.get() == 'y = 1/x':
+        functions.reciprocal_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = lg(x)':
+        functions.natural_log_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = sin(x)':
+        functions.sine_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = tg(x)':
+        functions.tangent_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = ctg(x)':
+        functions.cotangent_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = arcsin(x)':
+        functions.arcsine_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'y = arccos(x)':
+        functions.arccosine_function(x.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'z = x*y':
+        functions.product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'z = sin(x)':
+        functions.sine_product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'z = sin(x)cos(y)':
+        functions.sine_cosine_product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
+    elif options.get() == 'z = x2y2+2':
+        functions.quadratic_product_function(x.get(), y.get(), theme_dd.get(), image_name.get())
     my_image = ctk.CTkImage(light_image=Image.open(f"{image_name.get()}.png"),
                                 dark_image=Image.open(f"{image_name.get()}.png"),
                                 size=(640, 480))

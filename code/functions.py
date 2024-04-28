@@ -4,13 +4,13 @@ from matplotlib import cm
 import numpy as np
 plt.switch_backend('Agg')
 
-def linear(x_values: list[str], k:str, b:str, theme:str, name_file:str): # y=kx+b
+def linear(x_values: list[str], a:str, b:str, theme:str, name_file = "linear"): # y=kx+b
     
     x_values = x_values.replace("x:", "")  
-    k = k.replace("k:", "")
+    a = a.replace("k:", "")
     b = b.replace("b:", "")
     x = list(map(int, x_values.split(',')))
-    y = [int(k) * x + int(b) for x in x]
+    y = [int(a) * x + int(b) for x in x]
     
     plt.plot(x, y)
     if theme == "black":
@@ -31,7 +31,7 @@ def linear(x_values: list[str], k:str, b:str, theme:str, name_file:str): # y=kx+
 def check_file_availability(file_name):
     return os.path.exists(file_name)
 
-def quadratic_equation(x_values: list[str], a: str, b: str, c: str, theme: str, name_file: str): # y = ax^2 + bx + c
+def quadratic_equation(x_values: list[str], a: str, b: str, c: str, theme: str, name_file = "quadratic_equation"): # y = ax^2 + bx + c
     x_values = x_values.replace("x:", "")
     a = a.replace("a:", "")
     b = b.replace("b:", "")
@@ -288,7 +288,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
-def plot_3d_surface(x_values, y_values, name_file='3D_Plot_Graph'): # z = x*y
+def product_function(x_values, y_values, name_file='3D_Plot_Graph'): # z = x*y
     x = np.array(list(map(float, x_values.split(','))))
     y = np.array(list(map(float, y_values.split(','))))
     X, Y = np.meshgrid(x, y)
@@ -306,7 +306,7 @@ def plot_3d_surface(x_values, y_values, name_file='3D_Plot_Graph'): # z = x*y
     plt.savefig(f'{name_file}.png')
     plt.clf()  # Clear the current figure after saving the graph
     
-def plot_3d_sine_surface(x_values, name_file='3D_Sine_Plot_Graph'): # z = sin(x)
+def sine_product_function(x_values, name_file='3D_Sine_Plot_Graph'): # z = sin(x)
     x = np.array(list(map(float, x_values.split(','))))
     y = np.sin(x)
     X, Y = np.meshgrid(x, y)
@@ -324,7 +324,7 @@ def plot_3d_sine_surface(x_values, name_file='3D_Sine_Plot_Graph'): # z = sin(x)
     plt.savefig(f'{name_file}.png')
     plt.clf()  # Clear the current figure after saving the graph
 
-def plot_3d_sin_cos_surface(x_values, y_values, name_file='3D_Sin_Cos_Plot_Graph'):  # z=sin(x)cos(y)
+def sine_cosine_product_function(x_values, y_values, name_file='3D_Sin_Cos_Plot_Graph'):  # z=sin(x)cos(y)
     x = np.array(list(map(float, x_values.split(','))))
     y = np.array(list(map(float, y_values.split(','))))
     X, Y = np.meshgrid(x, y)
@@ -342,7 +342,7 @@ def plot_3d_sin_cos_surface(x_values, y_values, name_file='3D_Sin_Cos_Plot_Graph
     plt.savefig(f'{name_file}.png')
     plt.clf()  # Clear the current figure after saving the graph
     
-def plot_3d_custom_surface(x_values, y_values, name_file='Custom_3D_Plot_Graph'): # z=x2y2+2
+def quadratic_product_function(x_values, y_values, name_file='Custom_3D_Plot_Graph'): # z=x2y2+2
     x = np.array(list(map(float, x_values.split(','))))
     y = np.array(list(map(float, y_values.split(','))))
     X, Y = np.meshgrid(x, y)
